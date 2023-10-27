@@ -8,11 +8,7 @@
  * file that was distributed with this source code.
  */
 
-if (!isset($_SERVER['SYMFONY']))
-{
-  die("You must set the \"SYMFONY\" environment variable to the symfony lib dir (export SYMFONY=/path/to/symfony/lib/).\n");
-}
+/** @var Composer\Autoload\ClassLoader $classLoader */
+$classLoader = require dirname(__DIR__, 3) . '/vendor/autoload.php';
 
-require_once $_SERVER['SYMFONY'].'/vendor/lime/lime.php';
-require_once $_SERVER['SYMFONY'].'/autoload/sfCoreAutoload.class.php';
-sfCoreAutoload::register();
+require_once dirname(__DIR__, 3) . '/vendor/symfony/symfony1/lib/vendor/lime/lime.php';

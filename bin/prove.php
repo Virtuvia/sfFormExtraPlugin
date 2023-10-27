@@ -8,9 +8,27 @@
  * file that was distributed with this source code.
  */
 
-require_once dirname(__FILE__).'/../test/bootstrap.php';
+$xml = $argv[1] ?? '';
+if (!empty($xml)) {
+    if ((file_exists($xml) && !is_writable($xml)) || (!file_exists($xml) && !is_writable(dirname($xml)))) {
+        throw new \RuntimeException(sprintf('unable xml to write to file, %s', $xml));
+    }
+}
 
-$h = new lime_harness(new lime_output_color());
-$h->base_dir = realpath(dirname(__FILE__).'/../test');
-$h->register(sfFinder::type('file')->name('*Test.php')->in($h->base_dir));
-$h->run();
+require dirname(__DIR__) . '/test/bootstrap.php';
+
+$h = new lime_harness();
+$h->base_dir = dirname(__DIR__) . '/test';
+$h->register(sfFinder::type('file')->name('*Test.php')->in([
+    $h->base_dir
+]));
+
+$ret = $h->run() ? 0 : 1;
+
+if (!empty($xml)) {
+    file_put_contents($xml, $h->to_xml());
+
+    exit(0);
+}
+
+exit($ret);

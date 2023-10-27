@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-require_once dirname(__FILE__).'/../bootstrap.php';
-require_once dirname(__FILE__).'/../../lib/widget/sfWidgetFormReCaptcha.class.php';
-require_once $_SERVER['SYMFONY'].'/util/sfDomCssSelector.class.php';
+require_once dirname(__DIR__) . '/bootstrap.php';
+require_once dirname(__DIR__, 2) . '/lib/widget/sfWidgetFormReCaptcha.class.php';
+require_once dirname(__DIR__, 4) . '/vendor/symfony/symfony1/lib/util/sfDomCssSelector.class.php';
 
 $t = new lime_test(7, new lime_output_color());
 
