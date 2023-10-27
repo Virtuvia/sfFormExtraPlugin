@@ -11,7 +11,7 @@
 require_once dirname(__FILE__).'/../bootstrap.php';
 require_once dirname(__FILE__).'/../../lib/validator/sfValidatorBlacklist.class.php';
 
-$t = new lime_test(6, new lime_output_color());
+$t = new lime_test(7, new lime_output_color());
 
 // __construct()
 $t->diag('__construct()');
@@ -38,7 +38,8 @@ try
 catch (sfValidatorError $e)
 {
   $t->pass('->clean() throws a sfValidatorError when the submitted value is invalid');
-  $t->is($e->getCode(), 'forbidden', '->clean() throws an "forbidden" error');
+  $t->is($e->getCode(), 0, '->clean() throws a "0" error code');
+  $t->is($e->getCodeString(), 'forbidden', '->clean() throws an "forbidden" error code string');
 }
 
 try

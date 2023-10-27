@@ -11,7 +11,7 @@
 require_once dirname(__FILE__).'/../bootstrap.php';
 require_once dirname(__FILE__).'/../../lib/form/sfFormLanguage.class.php';
 
-$t = new lime_test(9, new lime_output_color());
+$t = new lime_test(10, new lime_output_color());
 
 // initialize objects
 $dispatcher = new sfEventDispatcher();
@@ -55,7 +55,8 @@ $t->is($user->getCulture(), 'fr', '->process() changes the user culture');
 
 $request->setParameter('language', 'es');
 $t->is($form->process($request), false, '->process() returns true if the form is not valid');
-$t->is($form['language']->getError()->getCode(), 'invalid', '->process() throws an error if the language is not in the languages option');
+$t->is($form['language']->getError()->getCode(), 0, '->process() throws an error if the language is not in the languages option');
+$t->is($form['language']->getError()->getCodeString(), 'invalid', '->process() throws an error if the language is not in the languages option');
 
 sfToolkit::clearDirectory($sessionPath);
 

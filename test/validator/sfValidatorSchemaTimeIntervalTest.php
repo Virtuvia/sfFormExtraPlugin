@@ -11,7 +11,7 @@
 require_once dirname(__FILE__).'/../bootstrap.php';
 require_once dirname(__FILE__).'/../../lib/validator/sfValidatorSchemaTimeInterval.class.php';
 
-$t = new lime_test(14, new lime_output_color());
+$t = new lime_test(19, new lime_output_color());
 
 // __construct()
 $t->diag('__construct()');
@@ -42,7 +42,8 @@ try
 catch (sfValidatorErrorSchema $e)
 {
   $t->isa_ok($e, 'sfValidatorErrorSchema', 'clean() throws a sfValidatorErrorSchema');
-  $t->is($e->getCode(), 'start [start_not_prior]', 'clean() detects start date greater than end date');
+  $t->is($e->getCode(), 0, 'clean() detects start date greater than end date');
+  $t->is($e->getCodeString(), 'start [start_not_prior]', 'clean() detects start date greater than end date');
 }
 
 $v = new sfValidatorSchemaTimeInterval('start', 'end', array('disallow_future_dates' => true, 'throw_global_error' => false));
@@ -53,7 +54,8 @@ try
 }
 catch (sfValidatorErrorSchema $e)
 {
-  $t->is($e->getCode(), 'start [future_date]', 'clean() detects future date');
+  $t->is($e->getCode(), 0, 'clean() detects future date');
+  $t->is($e->getCodeString(), 'start [future_date]', 'clean() detects future date');
 }
 
 $v = new sfValidatorSchemaTimeInterval('start', 'end', array('disallow_past_dates' => true, 'throw_global_error' => false));
@@ -64,7 +66,8 @@ try
 }
 catch (sfValidatorErrorSchema $e)
 {
-  $t->is($e->getCode(), 'start [past_date]', 'clean() detects past date');
+  $t->is($e->getCode(), 0, 'clean() detects past date');
+  $t->is($e->getCodeString(), 'start [past_date]', 'clean() detects past date');
 }
 
 $v = new sfValidatorSchemaTimeInterval('start', 'end', array('disallow_future_dates' => false, 'throw_global_error' => false));
@@ -108,7 +111,8 @@ try
 }
 catch (sfValidatorError $e)
 {
-  $t->is($e->getCode(), 'end [too_short]', 'clean() detects a too short duration');
+  $t->is($e->getCode(), 0, 'clean() detects a too short duration');
+  $t->is($e->getCodeString(), 'end [too_short]', 'clean() detects a too short duration');
 }
 
 $v = new sfValidatorSchemaTimeInterval('start', 'end', array('max_duration' => 86400 * 10, 'disallow_future_dates' => false, 'throw_global_error' => false));
@@ -119,7 +123,8 @@ try
 }
 catch (sfValidatorError $e)
 {
-  $t->is($e->getCode(), 'end [too_long]', 'clean() detects an exceeded duration');
+  $t->is($e->getCode(), 0, 'clean() detects an exceeded duration');
+  $t->is($e->getCodeString(), 'end [too_long]', 'clean() detects an exceeded duration');
 }
 
 $v = new sfValidatorSchemaTimeInterval('start', 'end', array('disallow_future_dates' => true, 'throw_global_error' => false));

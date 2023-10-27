@@ -11,7 +11,7 @@
 require_once dirname(__FILE__).'/../bootstrap.php';
 require_once dirname(__FILE__).'/../../lib/validator/sfValidatorReCaptcha.class.php';
 
-$t = new lime_test(3, new lime_output_color());
+$t = new lime_test(4, new lime_output_color());
 
 $REMOTE_ADDR = 'symfony.example.com';
 $PUBLIC_KEY  = '6Lf2DQEAAAAAALB9pGaVdcjMiv4CAuOVkfCSVvGh';
@@ -44,5 +44,6 @@ try
 catch (sfValidatorError $e)
 {
   $t->pass('->clean() throws a sfValidatorError when the captcha is invalid');
-  $t->is($e->getCode(), 'captcha', '->clean() throws a captcha code');
+  $t->is($e->getCode(), 0, '->clean() throws a 0 code');
+  $t->is($e->getCodeString(), 'captcha', '->clean() throws a captcha code string');
 }
