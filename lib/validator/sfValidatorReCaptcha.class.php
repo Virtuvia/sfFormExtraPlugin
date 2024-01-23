@@ -108,7 +108,7 @@ class sfValidatorReCaptcha extends sfValidatorBase
       throw new sfValidatorError($this, 'server_problem', array('error' => $errstr));
     }
 
-    $query = http_build_query($parameters, null, '&');
+    $query = http_build_query($parameters, '', '&');
     fwrite($fs, sprintf(
                   "POST %s HTTP/1.0\r\n".
                   "Host: %s\r\n".
