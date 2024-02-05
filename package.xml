@@ -57,7 +57,6 @@
            <file role="data" name="sfValidatorDoctrineNestedSetLevel.class.php" />
          </dir>
          <file role="data" name="sfValidatorBlacklist.class.php" />
-         <file role="data" name="sfValidatorReCaptcha.class.php" />
          <file role="data" name="sfValidatorSchemaTimeInterval.class.php" />
          <file role="data" name="sfValidatorDefault.class.php" />
        </dir>
@@ -68,7 +67,6 @@
          <file role="data" name="sfWidgetFormJQueryDate.class.php" />
          <file role="data" name="sfWidgetFormPropelChoiceGrouped.class.php" />
          <file role="data" name="sfWidgetFormPropelJQueryAutocompleter.class.php" />
-         <file role="data" name="sfWidgetFormReCaptcha.class.php" />
          <file role="data" name="sfWidgetFormSelectDoubleList.class.php" />
          <file role="data" name="sfWidgetFormSelectUSState.class.php" />
          <file role="data" name="sfWidgetFormTextareaTinyMCE.class.php" />
@@ -81,13 +79,9 @@
          <file role="data" name="sfFormLanguageTest.php" />
        </dir>
        <dir name="validator">
-         <file role="data" name="sfValidatorReCaptchaTest.php" />
          <file role="data" name="sfValidatorBlacklistTest.php" />
          <file role="data" name="sfValidatorSchemaTimeIntervalTest.php" />
          <file role="data" name="sfValidatorDefaultTest.php" />
-       </dir>
-       <dir name="widget">
-         <file role="data" name="sfWidgetFormReCaptchaTest.php" />
        </dir>
      </dir>
 
