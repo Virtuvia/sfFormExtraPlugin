@@ -80,26 +80,26 @@ class sfValidatorSchemaTimeInterval extends sfValidatorSchema
    *
    * @see sfValidatorSchema
    *
-   * @param  array  $values  Values to validate
+   * @param  array  $value  Values to validate
    * @return array
    * @throws InvalidArgumentException if $values is not an array
    * @throws sfValidatorError
    * @throws sfValidatorErrorSchema
    */
-  protected function doClean($values)
+  protected function doClean($value)
   {
-    if (is_null($values))
+    if (is_null($value))
     {
-      $values = array();
+      $value = array();
     }
 
-    if (!is_array($values))
+    if (!is_array($value))
     {
       throw new InvalidArgumentException('You must pass an array parameter to the clean() method');
     }
 
-    $this->dateStart = isset($values[$this->getOption('date_start_field')]) ? strtotime($values[$this->getOption('date_start_field')]) : null;
-    $this->dateEnd   = isset($values[$this->getOption('date_end_field')]) ? strtotime($values[$this->getOption('date_end_field')]) : null;
+    $this->dateStart = isset($value[$this->getOption('date_start_field')]) ? strtotime($value[$this->getOption('date_start_field')]) : null;
+    $this->dateEnd   = isset($value[$this->getOption('date_end_field')]) ? strtotime($value[$this->getOption('date_end_field')]) : null;
 
     $errorCode = null;
     $errorField = null;
@@ -131,7 +131,7 @@ class sfValidatorSchemaTimeInterval extends sfValidatorSchema
     // At this point, if either the start or end date is not set we can return values
     if (is_null($this->dateStart) or is_null($this->dateEnd))
     {
-      return $values;
+      return $value;
     }
 
     // Duration
@@ -152,7 +152,7 @@ class sfValidatorSchemaTimeInterval extends sfValidatorSchema
       $this->throwError('start_not_prior', $this->getOption('date_start_field'));
     }
 
-    return $values;
+    return $value;
   }
 
   /**
